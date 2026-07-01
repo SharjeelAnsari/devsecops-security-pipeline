@@ -1,3 +1,6 @@
+# NOTE: This file is intentionally vulnerable for DevSecOps pipeline demonstration.
+# Vulnerabilities are deliberate to showcase Bandit, Semgrep, and TruffleHog detection.
+# See README.md for details.
 import subprocess
 import hashlib
 
