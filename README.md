@@ -21,6 +21,7 @@ VulnerabilityDescriptionTool That Catches Itshell=True in subprocessAllows shell
 
 
 ⚙️ Pipeline Architecture
+ 
 Developer pushes code
         ↓
 GitHub Actions triggered
@@ -39,14 +40,17 @@ GitHub Actions triggered
     YES → Build fails ❌ (code blocked)
     NO  → Build passes ✅ (code approved)
 
+
 📂 Project Structure
-devsecops-security-pipeline/
+
+    devsecops-security-pipeline/
 ├── .github/
 │   └── workflows/
 │       └── security-scan.yml   # Pipeline definition
 ├── app/
 │   └── main.py                 # Intentionally vulnerable Python app
 └── README.md
+
 
 🔍 Key Security Concepts Demonstrated
 
