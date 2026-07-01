@@ -1,66 +1,67 @@
-🔐 DevSecOps Automated Security Pipeline
-A CI/CD security pipeline that automatically scans code for vulnerabilities on every push using GitHub Actions. Built to simulate a real-world DevSecOps security gate.
+# 🔐 DevSecOps Automated Security Pipeline
 
-🚀 What This Does
-Every time code is pushed to this repository, GitHub Actions automatically spins up a fresh environment and runs three security tools against the codebase:
+A CI/CD pipeline that automatically scans code for vulnerabilities on every push using GitHub Actions. Simulates a real-world DevSecOps security gate.
 
-Bandit — Scans Python code for common security flaws (shell injection, weak hashing, hardcoded secrets)
-Semgrep — Performs broader static analysis across the codebase using community rule sets
-TruffleHog — Scans the entire Git history for leaked API keys, tokens, and credentials
+---
 
-If any critical issue is found, the pipeline fails the build — simulating how a real security gate would block vulnerable code from reaching production.
+## 🚀 What This Does
 
-🛠️ Tools & Technologies
-ToolPurposeGitHub ActionsCI/CD automationBanditPython SAST (Static Application Security Testing)SemgrepMulti-language static analysisTruffleHogSecret scanningPython 3.11Application language
+Every time code is pushed, GitHub Actions runs three security tools automatically:
 
-🧪 Intentional Vulnerabilities (Demo)
-The file app/main.py contains deliberately planted vulnerabilities to demonstrate the pipeline's detection capability:
-VulnerabilityDescriptionTool That Catches Itshell=True in subprocessAllows shell injection attacksBandithashlib.md5()Weak hashing algorithm, not suitable for passwordsBanditHardcoded API keySecret exposed directly in source codeBandit / TruffleHog
+- **Bandit** — Scans Python code for security flaws (shell injection, weak hashing, hardcoded secrets)
+- **Semgrep** — Performs static analysis across the codebase using community rule sets
+- **TruffleHog** — Scans Git history for leaked API keys, tokens, and credentials
 
-⚠️ These vulnerabilities are intentional for demonstration purposes only. This is a security testing project, not production code.
+If any critical issue is found, the pipeline **fails the build** — blocking vulnerable code from reaching production.
 
+---
 
-⚙️ Pipeline Architecture
- 
-Developer pushes code
-        ↓
-GitHub Actions triggered
-        ↓
-┌─────────────────────────┐
-│     security-scan job   │
-│                         │
-│  1. Checkout code       │
-│  2. Set up Python 3.11  │
-│  3. Run Bandit          │
-│  4. Run Semgrep         │
-│  5. Run TruffleHog      │
-└─────────────────────────┘
-        ↓
-  Vulnerabilities found?
-    YES → Build fails ❌ (code blocked)
-    NO  → Build passes ✅ (code approved)
+## 🛠️ Tools & Technologies
 
+| Tool | Purpose |
+|------|---------|
+| GitHub Actions | CI/CD automation |
+| Bandit | Python SAST scanning |
+| Semgrep | Multi-language static analysis |
+| TruffleHog | Secret scanning |
+| Python 3.11 | Application language |
 
-📂 Project Structure
+---
 
-    devsecops-security-pipeline/
-├── .github/
-│   └── workflows/
-│       └── security-scan.yml   # Pipeline definition
-├── app/
-│   └── main.py                 # Intentionally vulnerable Python app
+## 🧪 Intentional Vulnerabilities
+
+The file `app/main.py` contains deliberately planted vulnerabilities to demonstrate detection:
+
+| Vulnerability | Tool That Catches It |
+|--------------|----------------------|
+| `shell=True` in subprocess (shell injection) | Bandit |
+| `hashlib.md5()` (weak hashing) | Bandit |
+| Hardcoded API key in source code | Bandit / TruffleHog |
+
+> ⚠️ These vulnerabilities are intentional for demonstration purposes only.
+
+---
+
+## 📂 Project Structure
+
+devsecops-security-pipeline/
+├── .github/workflows/security-scan.yml
+├── app/main.py
 └── README.md
 
+---
 
-🔍 Key Security Concepts Demonstrated
+## 🔍 Security Concepts Demonstrated
 
-Shift Left Security — Security checks happen at commit time, not after deployment
-SAST (Static Application Security Testing) — Analysing source code without executing it
-Secret Scanning — Detecting credentials accidentally committed to version control
-CI/CD Security Gates — Automated enforcement that blocks vulnerable code from merging
+- **Shift Left Security** — Checks happen at commit time, not after deployment
+- **SAST** — Analysing source code without executing it
+- **Secret Scanning** — Detecting credentials in version control
+- **CI/CD Security Gates** — Automated blocking of vulnerable code
 
+---
 
-👤 Author
-Sharjeel Ansari
-B.Sc. IT — Cybersecurity | Aspiring SOC Analyst & Penetration Tester
-GitHub • https://www.linkedin.com/in/sharjeel-ansari-m78/
+## 👤 Author
+
+**Sharjeel Ansari** — B.Sc. IT | Cybersecurity | Aspiring SOC Analyst & Penetration Tester
+
+[GitHub](https://github.com/SharjeelAnsari) • [LinkedIn](https://www.linkedin.com/in/sharjeel-ansari-m78/)
